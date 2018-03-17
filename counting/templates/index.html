@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+{% if results %}
+<table id="data">
+    <tr>
+        <th>Forename</th>
+        <th>Surname</th>
+        <th>Payment</th>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.forename }}</td>
+            <td>{{ result.surname }}</td>
+            <td>{{ result.payment }}</td>
+        </tr>
+        {% endfor %}
+    </tr>
+</table>
+{% endif %}
+{% endblock %}

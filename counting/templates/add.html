@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Add New Shopping Item</h4>
+   <form action="" method="post" id="additem">
+        {{ form.hidden_tag() }}
+        <p>          
+            {{ form.buyer.label }}:
+            {{ form.buyer() }}
+            {% for error in form.buyer.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+        {{ form.description.label }}:
+        {{ form.description() }}
+        </p>
+        <p>
+            {{ form.price.label }}:
+            {{ form.price(size=10) }}
+            {% for error in form.price.errors %}                                    
+            <span style="color: red;">[{{ error }}]</span>                             
+            {% endfor %}
+        </p>
+
+        <p>
+        {{ form.others() }}
+        {% for error in form.others.errors %}
+        <span style="color: red;">[{{ error }}]</span>                             
+        {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+   </form> 
+{% endblock %}

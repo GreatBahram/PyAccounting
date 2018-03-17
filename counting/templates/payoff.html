@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Payoff the debt</h4>
+   <form action="" method="post" id="additem">
+        {{ form.hidden_tag() }}
+        <p>          
+            {{ form.debtor.label }}:
+            {{ form.debtor() }}
+            {% for error in form.debtor.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+
+        <p>
+        {{ form.description.label }}:
+        {{ form.description() }}
+        </p>
+        <p>
+            {{ form.price.label }}:
+            {{ form.price(size=10) }}
+            {% for error in form.price.errors %}                                    
+            <span style="color: red;">[{{ error }}]</span>                             
+            {% endfor %}
+        </p>
+
+        <p>
+        {{ form.creditor.label }}
+        {{ form.creditor() }}
+        {% for error in form.creditor.errors %}
+        <span style="color: red;">[{{ error }}]</span>                             
+        {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+   </form> 
+{% endblock %}

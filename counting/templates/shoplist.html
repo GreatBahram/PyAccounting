@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h4>Shopping List</h4>
+{% if output %}
+<table id="data">
+    <tr>
+        <th>ID</th>
+        <th>Date</th>
+        <th>Buyer</th>
+        <th>Debtor(s)</th>
+        <th>Price</th>
+        <th>Description</th>
+    </tr>
+{% for row in output %}
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+    </tr>
+{% endfor %}
+</table>
+{% endif %}
+{% endblock %}

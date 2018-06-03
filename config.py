@@ -1,25 +1,37 @@
-import os
-
-
 class Config:
+    """
+    Common configurations
+    Put any configurations here that are common across all environments
+    """
     DEBUG = False
     TESTING = False
-    CURRENT_PATH = os.path.dirname(__file__)
-    DATABASE_URI = ""
-    WTF_CSRF_ENABLED = True
-    SECRET_KEY = "Bahram"
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 
 class DevelopmentConfig(Config):
+    """
+    Development configurations
+    """
     DEBUG = True
-    DATABASE_URI = ":memory:"
+    SQLALCHEMY_ECHO = True
+    SECRET_KEY = "FakeK3y"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///database.db"
 
 
 class TestingConfig(Config):
+    """
+    Testing configurations
+    """
     TESTING = True
-    DATABASE_URI = ":memory:"
 
 
 class ProductionConfig(Config):
-    DATABASE_URI = Config.CURRENT_PATH + "database.db"
+    """
+    Production configurations
+    """
 
+app_config = {
+        'development': DevelopmentConfig,
+        'production': ProductionConfig,
+        'testing': TestingConfig,
+        }

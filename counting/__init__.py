@@ -1,12 +1,19 @@
 #!/usr/bin/env python3
 # Author: GreatBahram
+
+# third-part imports
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
 
-# Initialize the app
-app = Flask(__name__)
+# local imports
+from config import app_config
 
-# Load the config file
-app.config.from_object('config.DevelopmentConfig')
+# db variable initialization
+db = SQLAlchemy()
 
-# Load the views
-from counting import views
+def create_app(config_name):
+    app = Flask(__name__)
+    app.config.from_object(app_config[config_name])
+    db.init_app(app)
+
+    return app

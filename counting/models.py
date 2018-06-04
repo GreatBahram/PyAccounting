@@ -71,7 +71,7 @@ class Payment(db.Model):
     __tablename__ = 'payments'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    #date = db.Column(db.Datetime, nullable=False)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     buyer = db.Column(db.Integer, db.ForeignKey('persons.id'))
     debtor = db.Column(db.Integer, db.ForeignKey('persons.id'))
     price = db.Column(db.Integer, nullable=False)

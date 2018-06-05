@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <link href="{{ url_for('static', filename='css/counting.css') }}" rel="stylesheet" type="text/css">
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png')  }}">
+
+        {% if title %}
+        <title>{{ title }} - Counting</title>
+        {% else %}
+        <title> Counting web application</title>
+        {% endif %}
+        {% block header %}
+        {% endblock %}
+    </head>
+    <body>
+        <div align="center">
+            <h1>Counting Web Application</h1>
+        </div>
+        <div id="vertmenu"> 
+            <h1>Navigation</h1>
+            <ul>
+                <li><a href="{{ url_for('index') }}" tabindex="1">Home</a></li>
+                <li><a href="{{ url_for('add') }}" tabindex="2">Add New Shopping</a></li>
+                <li><a href="{{url_for('payoff')}}" tabindex="3">Payoff Debt</a></li>
+                <li><a href="{{ url_for('shop_list')}}" tabindex="3">Shopping List</a></li>
+                <li><a href="{{ url_for('payoff_list') }}" tabindex="3">Payoff List</a></li>
+                <li><a href="#" tabindex="4">Project page</a></li>
+                <li><a href="{{ url_for('about') }}" tabindex="5">About</a></li>
+            </ul>
+        </div>
+        {% block content %}
+        {% endblock %}
+        <div align="center" id="footer">
+            <h2>Powered by Flask.</h2>
+        </div>
+    </body>
+</html>

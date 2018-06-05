@@ -14,7 +14,7 @@ def homepage():
 
 @home.route('/dashboard')
 @login_required
-def homepage():
+def dashboard():
     """
     Render the dashboard template on the /dashboard route
     """

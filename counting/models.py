@@ -9,7 +9,7 @@ from datetime import datetime
 # local imports
 from counting import db, login_manager
 
-class Person(db.Model):
+class Person(UserMixin, db.Model):
     """
         Create a Person table
     """

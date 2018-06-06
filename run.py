@@ -5,10 +5,7 @@ import os
 # local imports
 from counting import create_app
 
-config_name = os.getenv('FLASK_CONFIG')
-
-if not config_name:
-    config_name = "development"
+config_name = os.environ.get('FLASK_CONFIG', 'development')
 
 app =  create_app(config_name)
 

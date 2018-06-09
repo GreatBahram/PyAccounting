@@ -23,6 +23,9 @@ class Person(UserMixin, db.Model):
     surname = db.Column(db.String(60), nullable=False, index=True) 
     password_hash = db.Column(db.String(128))
     is_admin = db.Column(db.Boolean, default=False)
+    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
+    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
+            onupdate=db.func.current_timestamp())
 
     @property
     def password(self):
@@ -77,6 +80,9 @@ class Payment(db.Model):
     price = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(200))
     is_sale = db.Column(db.Boolean, default=False)
+    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
+    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
+            onupdate=db.func.current_timestamp())
 
     def to_dict(self):
         return {

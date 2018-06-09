@@ -15,7 +15,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_ECHO = True
     SECRET_KEY = "FakeK3y"
-    SQLALCHEMY_DATABASE_URI = "sqlite:///database.db"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///../database.db"
 
 
 class TestingConfig(Config):

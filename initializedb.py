@@ -7,8 +7,8 @@ variable called "DROPDB" to be "True".
 """
 import os
 
-from counting import db
-from counting.models import Person
+from pyaccounting import db
+from pyaccounting.models import Person
 
 if bool(os.environ.get('DROPDB', '')):
     db.drop_all()

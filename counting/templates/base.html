@@ -4,9 +4,9 @@
         <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
         <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.png')  }}">
         {% if title %}
-        <title>{{ title }} - Counting</title>
+        <title>{{ title }} - PyAccounting</title>
         {% else %}
-        <title> Counting web application</title>
+        <title> PyAccounting web application</title>
         {% endif %}
         {% block header %}
         {% endblock %}
@@ -21,13 +21,28 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 		    </button>
-		    <a class="navbar-brand topnav" href="{{ url_for('home.homepage') }}">Counting</a>
+		    <a class="navbar-brand topnav" href="{{ url_for('home.homepage') }}">PyAcounting</a>
 		</div>
 		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		    <ul class="nav navbar-nav navbar-right">
-			<li><a href="{{ url_for('home.homepage') }}">Home</a></li>
-			<li><a href="#">Register</a></li>
-			<li><a href="#">Login</a></li>
+                        {% if current_user.is_authenticated %}
+                            {% if current_user.is_admin %}
+                                <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+                                <li><a href="#">Admin_Page</a></li>
+                                <li><a href="#">Dashboard</a></li>
+                                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                                <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username  }}!</a></li>
+                            {% else %}
+                                <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+                                <li><a href="{{ url_for('home.dashboard') }}">Dashboard</a></li>
+                                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                                <li><a><i class="fa fa-user"></i>  Hi, {{ current_user.username  }}!</a></li>
+                            {% endif %}
+                        {% else %}
+                            <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+                            <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                            <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                        {% endif %}
 		    </ul>
 		</div>
 	    </div>
@@ -42,11 +57,18 @@
 		<div class="row">
 		    <div class="col-lg-12">
 			<ul class="list-inline">
-			    <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
-			    <li class="footer-menu-divider">⋅</li>
-			    <li><a href="#">Register</a></li>
-			    <li class="footer-menu-divider">⋅</li>
-			    <li><a href="#">Login</a></li>
+                            {% if current_user.is_authenticated %}
+                                <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+                                <li class="footer-menu-divider">⋅</li>
+                                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                                <li class="footer-menu-divider">⋅</li>
+                            {% else %}
+                                <li><a href="{{ url_for('home.homepage') }}">Home</a></li>
+                                <li class="footer-menu-divider">⋅</li>
+                                <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                                <li class="footer-menu-divider">⋅</li>
+                                <li><a href="{{ url_for('auth.login') }}">Login</a></li>
+                            {% endif %}
 			</ul>
 			<p class="copyright text-muted small">Copyright © 2016. All Rights Reserved</p>
 		    </div>

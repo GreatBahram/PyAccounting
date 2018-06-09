@@ -27,7 +27,7 @@ def create_app(config_name):
     login_manager.message = "You must be logged in to access this page"
 
     migrate = Migrate(app, db)
-    from counting import models
+    from pyaccounting import models
 
     from .admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint, url_prefix='/admin')

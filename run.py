@@ -3,7 +3,7 @@
 import os
 
 # local imports
-from counting import create_app
+from pyaccounting import create_app
 
 config_name = os.environ.get('FLASK_CONFIG', 'development')
 

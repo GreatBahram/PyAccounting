@@ -7,7 +7,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
 
 # local imports
-from counting import db, login_manager
+from pyaccounting import db, login_manager
 
 class Person(UserMixin, db.Model):
     """

@@ -16,9 +16,8 @@ class DevelopmentConfig(Config):
     Development configurations
     """
     DB_PATH = os.path.join(os.path.dirname(__file__), 'database.db')
-    print(f"sqlite:///{DB_PATH}")
     DEBUG = True
-    SQLALCHEMY_ECHO = True
+#    SQLALCHEMY_ECHO = True
     SECRET_KEY = "FakeK3y"
     SQLALCHEMY_DATABASE_URI = f"sqlite:///{DB_PATH}"
 

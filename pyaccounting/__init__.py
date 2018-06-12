@@ -38,6 +38,9 @@ def create_app(config_name):
     from .home import home as home_blueprint
     app.register_blueprint(home_blueprint)
 
+    from .user import user as user_blueprint
+    app.register_blueprint(user_blueprint)
+
     # Custom error pages
     @app.errorhandler(401)
     def forbidden(error):

@@ -16,6 +16,8 @@ db = SQLAlchemy()
 
 # login_manager variable initialization
 login_manager = LoginManager()
+login_manager.login_view = 'auth.login'
+login_manager.login_message_category = 'info'
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -24,7 +26,6 @@ def create_app(config_name):
     Bootstrap(app)
     db.init_app(app)
     login_manager.init_app(app)
-    login_manager.message = "You must be logged in to access this page"
 
     migrate = Migrate(app, db)
     from pyaccounting import models

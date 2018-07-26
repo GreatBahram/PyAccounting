@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 # local imports
-from ..models import Payment, Person
+from ..models import PaymentModel, PersonModel
 
 
 class AddPurchase(FlaskForm):
@@ -15,7 +15,7 @@ class AddPurchase(FlaskForm):
     """
     buyer = QuerySelectField(
             'buyer',
-            query_factory=lambda: Person.query.filter_by(is_admin=False).all(),
+            query_factory=lambda: PersonModel.query.filter_by(is_admin=False).all(),
             get_label="username",
             validators=[DataRequired()],
             )

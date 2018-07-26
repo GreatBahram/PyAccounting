@@ -1,12 +1,12 @@
 # third-party imports
-from flask import flash, redirect, render_template, url_for
-from flask_login import login_required, login_user, logout_user
+from flask import flash, redirect, render_template, url_for, request
+from flask_login import login_required, login_user, logout_user, current_user
 
 # local imports
-from .forms import LoginForm, RegisterationForm
+from .forms import LoginForm, RegisterationForm, UpdateAccountForm
 from . import auth
 from .. import db
-from ..models import PersonModel
+from pyaccounting.models import PersonModel
 
 
 @auth.route('/register', methods=["GET", "POST"])
@@ -20,8 +20,6 @@ def register():
         person = PersonModel(
             username=form.username.data,
             email=form.email.data,
-            forename=form.forename.data,
-            surname=form.surname.data,
             password=form.password.data,
                 )
         # add person to the database

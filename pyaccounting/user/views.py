@@ -6,7 +6,7 @@ from flask_login import login_required
 from .forms import AddPurchase
 from . import user
 from .. import db
-from ..models import Payment
+from pyaccounting.models import PaymentModel
 
 @user.route('/add_purchase', methods=["GET", "POST"])
 @login_required

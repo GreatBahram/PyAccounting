@@ -6,7 +6,7 @@ from wtforms.validators import DataRequired
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 # local imports
-from ..models import PaymentModel, PersonModel
+from pyaccounting.models import PaymentModel, PersonModel
 
 
 class AddPurchase(FlaskForm):

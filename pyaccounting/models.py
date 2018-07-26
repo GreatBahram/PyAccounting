@@ -19,9 +19,8 @@ class PersonModel(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(60), index=True, unique=True)
     email = db.Column(db.String(60), index=True, unique=True)
-    forename = db.Column(db.String(60), nullable=False, index=True) 
-    surname = db.Column(db.String(60), nullable=False, index=True) 
     password_hash = db.Column(db.String(128))
+    image_file = db.Column(db.String(20), nullable=False, default='default.png')
     is_admin = db.Column(db.Boolean, default=False)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
@@ -63,7 +62,7 @@ class PersonModel(UserMixin, db.Model):
 # setup user_loader
 @login_manager.user_loader
 def load_user(user_id):
-    return Person.query.get(int(user_id))
+    return PersonModel.query.get(int(user_id))
 
 
 class PaymentModel(db.Model):

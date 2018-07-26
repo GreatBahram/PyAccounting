@@ -9,6 +9,7 @@ from .. import db
 from ..models import Payment
 
 @user.route('/add_purchase', methods=["GET", "POST"])
+@login_required
 def add_purchase():
     """
     Handle requrests for the /addpurchase route

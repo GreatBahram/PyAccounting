@@ -48,7 +48,8 @@ def login():
                 form.password.data):
             # log person in
             login_user(person)
-            return redirect(url_for('home.dashboard'))
+            next_url = request.args.get('next')
+            return redirect(next_url) if next_url else redirect(url_for('home.dashboard'))
 
         # when login details are incorrect
         else:

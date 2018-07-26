@@ -9,7 +9,7 @@ from datetime import datetime
 # local imports
 from pyaccounting import db, login_manager
 
-class Person(UserMixin, db.Model):
+class PersonModel(UserMixin, db.Model):
     """
         Create a Person table
     """
@@ -66,7 +66,7 @@ def load_user(user_id):
     return Person.query.get(int(user_id))
 
 
-class Payment(db.Model):
+class PaymentModel(db.Model):
     """
         Create a Payment table
     """

@@ -31,3 +31,11 @@ def admin_dashboard():
         abort(403)
 
     return render_template('home/admin_dashboard.html', title="Admin Dashboard")
+
+@home.route('/about')
+def aboutpage():
+    """
+    Render the homepage template on the /about route
+    """
+    return render_template('home/about.html', title="About Us")
+

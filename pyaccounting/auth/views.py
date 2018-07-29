@@ -7,6 +7,7 @@ from .forms import LoginForm, RegisterationForm, UpdateAccountForm
 from . import auth
 from .. import db
 from pyaccounting.models import PersonModel
+from pyaccounting.auth.utils import save_picture
 
 
 @auth.route('/register', methods=["GET", "POST"])
@@ -25,7 +26,7 @@ def register():
         # add person to the database
         db.session.add(person)
         db.session.commit()
-        flash("You have successfully registered! You may now login.")
+        flash("You have successfully registered! You may now login.", 'success')
 
         # redirect to the login page
         return redirect(url_for('auth.login'))
@@ -53,7 +54,7 @@ def login():
 
         # when login details are incorrect
         else:
-            flash('Invalid email or password.')
+            flash('Invalid email or password.', 'danger')
 
     # load login template
     return render_template('auth/login.html', form=form, title="Login")
@@ -65,7 +66,7 @@ def logout():
         Handle requests to the /logout route
     """
     logout_user()
-    flash('You have successfully been logged out.')
+    flash('You have successfully been logged out.', 'success')
 
     # redirect to the login page
     return redirect(url_for('auth.login'))

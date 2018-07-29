@@ -69,6 +69,7 @@ def logout():
 
     # redirect to the login page
     return redirect(url_for('auth.login'))
+
 @auth.route("/account", methods=['GET', 'POST'])
 @login_required
 def user_info():

@@ -1,8 +1,9 @@
 # third-part imports
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField
-from wtforms import PasswordField, StringField, SubmitField, ValidationError
-from wtforms.validators import DataRequired, Email, EqualTo,Length
+from wtforms import (BooleanField, PasswordField, StringField, SubmitField,
+                     ValidationError)
+from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 # local imports
 from ..models import PersonModel
@@ -34,6 +35,7 @@ class LoginForm(FlaskForm):
     """
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Confirm Password', validators=[DataRequired()])
+    remember_me = BooleanField('Keep me signed in')
     submit = SubmitField('Login')
 
 

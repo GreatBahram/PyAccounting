@@ -1,7 +1,10 @@
 # third-party imports
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import PasswordField, StringField, SubmitField
+from wtforms.validators import DataRequired, Email, EqualTo
 
+# local imports
+from pyaccounting.models import PersonModel
 
 class PersonForm(FlaskForm):
     """
@@ -12,7 +15,7 @@ class PersonForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired(), 
             EqualTo('confirm_password')]) 
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired()])
-    submit = SubmitField('Register')
+    submit = SubmitField('Add')
 
     def validate_email(self, field):
         if PersonModel.query.filter_by(email=field.data).first():
@@ -21,5 +24,4 @@ class PersonForm(FlaskForm):
     def validate_username(self, field):
         if PersonModel.query.filter_by(username=field.data).first():
             raise ValidationError('Username is already in use')
-
 

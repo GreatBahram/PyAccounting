@@ -3,7 +3,7 @@ from flask import flash, redirect, render_template, url_for
 from flask_login import login_required
 
 # local imports
-from .forms import AddPurchase
+from pyaccounting.user.forms import AddPurchaseForm
 from . import user
 from .. import db
 from pyaccounting.models import PaymentModel
@@ -15,10 +15,9 @@ def add_purchase():
     Handle requrests for the /addpurchase route
     add an new purchase to the database through add purchase form
     """
-    form = AddPurchase()
-    print(form)
+    form = AddPurchaseForm()
     if form.validate_on_submit():
-        pass
+        print('')
 
     return render_template('user/add_purchase.html', title="Add Purchase",
             form=form)

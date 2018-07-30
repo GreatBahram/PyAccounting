@@ -1,15 +1,15 @@
 # third-party imports
 from flask_wtf import FlaskForm
-from wtforms import (IntegerField, SelectMultipleField, StringField,
+from wtforms import (IntegerField, SelectMultipleField, StringField, SelectField,
                      SubmitField, TextField, ValidationError)
 from wtforms.validators import DataRequired
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 # local imports
 from pyaccounting.models import PaymentModel, PersonModel
+from pyaccounting import db
 
-
-class AddPurchase(FlaskForm):
+class AddPurchaseForm(FlaskForm):
     """
     Form for non-admin to add a new purchase
     """
@@ -21,6 +21,6 @@ class AddPurchase(FlaskForm):
             )
     price = IntegerField('Price', validators=[DataRequired()])
     description = TextField('Description')
-    contributors = 'list of all contributer' # check SelectMultipleField
+    contributers = TextField('Contributers')
     submit = SubmitField('Add')
 

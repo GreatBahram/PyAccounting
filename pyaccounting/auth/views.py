@@ -50,7 +50,12 @@ def login():
             # log person in
             login_user(person)
             next_url = request.args.get('next')
-            return redirect(next_url) if next_url else redirect(url_for('home.dashboard'))
+            if next_url:
+                return redirect(next_url)
+            if person.is_admin:
+                return redirect(url_for('home.admin_dashboard'))
+            else:
+                return redirect(url_for('home.dashboard'))
 
         # when login details are incorrect
         else:

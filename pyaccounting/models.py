@@ -50,14 +50,12 @@ class PersonModel(UserMixin, db.Model):
     def to_dict(self):
         return {
                 'id': self.id,
-                'forename': self.forename,
-                'surname': self.surname,
                 'username': self.username,
                 'email': self.email,
                 }
 
     def __repr__(self):
-        return "<Person: {} {}>".format(self.forename, self.surname)
+        return f"<Person: '{self.username}' '{self.email}'>"
 
 # setup user_loader
 @login_manager.user_loader
@@ -95,5 +93,5 @@ class PaymentModel(db.Model):
                 }
 
     def __repr__(self):
-        return "<Payment:>"
+        return f"<Payment:>"
 

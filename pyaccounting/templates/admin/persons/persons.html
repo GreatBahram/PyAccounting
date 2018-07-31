@@ -1,6 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-{% for person in persons %}
-{{ person.username }}</br>
-{% endfor %}
+<h2>Members list</h2>
+{% if persons %}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in persons %}
+            <tr>
+                <td>{{ person.username }}</td>
+                <td>{{ person.email }}</td>
+                <td><a href="{{ url_for('admin.edit_person', id=person.id) }}"><i class="fa fa-pencil"></i> Edit </a></td>
+                <td><a href="{{ url_for('admin.delete_person', id=person.id) }}"><i class="fa fa-trash"></i> Delete </a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<div style="text-align: center">
+{% else %}
+<h3> No persons have been added. </h3>
+{% endif %}
+    <hr class="intro-divider">
+    <a href="{{ url_for('admin.add_person')  }}" class="btn btn-default btn-lg"> <i class="fa fa-plus"></i> Add Member </a>
+</div>
 {% endblock %}

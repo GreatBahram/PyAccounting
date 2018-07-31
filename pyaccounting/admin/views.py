@@ -1,5 +1,5 @@
 # third-party imports
-from flask import abort, redirect, render_template, url_for
+from flask import abort, redirect, render_template, url_for, flash
 from flask_login import current_user, login_required
 
 # local imports

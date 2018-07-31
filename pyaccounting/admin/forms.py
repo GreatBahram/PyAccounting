@@ -1,7 +1,7 @@
 # third-party imports
 from flask_wtf import FlaskForm
 from wtforms import PasswordField, StringField, SubmitField
-from wtforms.validators import DataRequired, Email, EqualTo
+from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 
 # local imports
 from pyaccounting.models import PersonModel

@@ -1,13 +1,20 @@
 # third-party imports
 from flask_wtf import FlaskForm
-from wtforms import (IntegerField, SelectMultipleField, StringField, SelectField,
-                     SubmitField, TextField, ValidationError)
+from wtforms import (IntegerField, SelectMultipleField, StringField,
+                     SubmitField, TextAreaField, TextField, ValidationError,
+                     widgets)
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.validators import DataRequired
-from wtforms_sqlalchemy.fields import QuerySelectField
 
 # local imports
-from pyaccounting.models import PaymentModel, PersonModel
 from pyaccounting import db
+from pyaccounting.models import PaymentModel, PersonModel
+
+
+class MultiCheckboxField(SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+
 
 class AddPurchaseForm(FlaskForm):
     """
@@ -20,7 +27,6 @@ class AddPurchaseForm(FlaskForm):
             validators=[DataRequired()],
             )
     price = IntegerField('Price', validators=[DataRequired()])
-    description = TextField('Description')
-    contributers = TextField('Contributers')
+    description = TextAreaField('Description')
+    contributers = MultiCheckboxField('Contributers', coerce=int, validators=[DataRequired()])
     submit = SubmitField('Add')
-

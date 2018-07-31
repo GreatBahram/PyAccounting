@@ -7,12 +7,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_bootstrap import Bootstrap
+from flask_bcrypt import Bcrypt
 
 # local imports
 from config import app_config
 
 # db variable initialization
 db = SQLAlchemy()
+bcrypt = Bcrypt()
 
 # login_manager variable initialization
 login_manager = LoginManager()
@@ -24,6 +26,7 @@ def create_app(config_name):
     app.config.from_object(app_config[config_name])
 
     Bootstrap(app)
+    bcrypt.init_app(app)
     db.init_app(app)
     login_manager.init_app(app)
 

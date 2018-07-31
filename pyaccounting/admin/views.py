@@ -1,13 +1,12 @@
 # third-party imports
-from flask import abort, redirect, render_template, url_for, flash
 from flask_login import current_user, login_required
+from flask import abort, flash, redirect, render_template, request, url_for
 
 # local imports
 from . import admin
 from pyaccounting import db
 from pyaccounting.admin.forms import PersonForm
 from pyaccounting.models import PersonModel
-
 
 def check_admin():
     """
@@ -23,8 +22,8 @@ def list_persons():
     List all employees
     """
     check_admin()
-
-    persons = PersonModel.query.filter_by(is_admin=False).all()
+    page = request.args.get('page', 1, type=int)
+    persons = PersonModel.query.filter_by(is_admin=False).paginate(per_page=10, page=page)
     return render_template('admin/persons/persons.html', persons=persons, title="Persons")
 
 @admin.route('/persons/add', methods=['GET', 'POST'])

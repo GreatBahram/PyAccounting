@@ -12,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for person in persons %}
+            {% for person in persons.items %}
                 <tr>
                     <td>{{ person.username }}</td>
                     <td>{{ person.email }}</td>
@@ -22,6 +22,20 @@
             {% endfor %}
         </tbody>
     </table>
+    <!-- Pagination -->
+    <div style="text-align: center">
+    {% for page_num in persons.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+        {% if page_num %}
+            {% if persons.page == page_num %}
+                <a class="btn btn-info mb-4" href="{{ url_for('admin.list_persons', page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                <a class="btn btn-outline-info mb-4" href="{{ url_for('admin.list_persons', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    </div>
     <div style="text-align: center">
 {% else %}
         <div style="text-align: center">

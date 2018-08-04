@@ -94,3 +94,17 @@ class PaymentModel(db.Model):
         if self.is_payoff:
             return f"<Payment: {self.debtor} +=> {self.buyer} ${self.price}"
         return f"<Payment: {self.debtor} -=> {self.buyer} ${self.price} "
+
+    @classmethod
+    def list_all_purchases(cls, id):
+        items = cls.query.filter_by(is_payoff=False).filter_by(buyer=id).all()
+        return items
+
+    @classmethod
+    def list_all_payoffs(cls, id):
+        items = cls.query.filter_by(is_payoff=True).filter_by(debtor=id).all()
+        return items
+
+    def save_to_db(self):
+        db.session.add(self)
+        db.session.commit()

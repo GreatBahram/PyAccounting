@@ -13,8 +13,8 @@
 		    <ul class="btn-group-vertical btn-group-lg">
                         <li class="btn btn-warning"><a href="{{ url_for('user.add_purchase') }}">Add new purchase</a></li>
                         <li class="btn btn-warning"><a href="">Payoff</a></li>
-                        <li class="btn btn-warning"><a href="">Shopping List</a></li>
-                        <li class="btn btn-warning"><a href="">Payoff List</a></li>
+                        <li class="btn btn-warning"><a href="{{ url_for('user.list_purchases') }}">Shopping List</a></li>
+                        <li class="btn btn-warning"><a href="{{ url_for('user.list_payoffs') }}">Payoff List</a></li>
                     </ul>
                 </div>
             </div>

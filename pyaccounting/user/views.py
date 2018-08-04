@@ -1,6 +1,7 @@
 # third-party imports
 from flask import flash, redirect, render_template, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
+from sqlalchemy import and_
 
 # local imports
 from pyaccounting.user.forms import AddPurchaseForm
@@ -34,3 +35,13 @@ def add_purchase():
 
     return render_template('user/add_purchase.html', title="Add Purchase",
             form=form)
+
+@user.route('/shoplist')
+def list_purchases():
+    items = PaymentModel.query.filter_by(is_payoff=False).filter_by(buyer=current_user.id).all()
+    print(items)
+
+@user.route('/payofflist')
+def list_payoffs():
+    items = PaymentModel.query.filter_by(is_payoff=True).filter_by(debtor=current_user.id).all()
+    print(items)

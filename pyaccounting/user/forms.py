@@ -32,3 +32,25 @@ class AddPurchaseForm(FlaskForm):
     contributers = MultiCheckboxField('Contributers', coerce=int, validators=[DataRequired()])
     date = DateField('DatePicker', format='%Y-%m-%d', default=datetime.today, validators=[DataRequired()])
     submit = SubmitField('Add')
+
+
+class AddPaybackForm(FlaskForm):
+    """
+    Form for non-admin to add a new purchase
+    """
+    debtor = QuerySelectField(
+            'Debtor',
+            query_factory=lambda: PersonModel.query.filter_by(is_admin=False).all(),
+            get_label="username",
+            validators=[DataRequired()],
+            )
+    price = IntegerField('Price', validators=[DataRequired()])
+    buyer = QuerySelectField(
+            'Buyer',
+            query_factory=lambda: PersonModel.query.filter_by(is_admin=False).all(),
+            get_label="username",
+            validators=[DataRequired()],
+            )
+    description = TextAreaField('Description')
+    date = DateField('DatePicker', format='%Y-%m-%d', default=datetime.today, validators=[DataRequired()])
+    submit = SubmitField('Add')

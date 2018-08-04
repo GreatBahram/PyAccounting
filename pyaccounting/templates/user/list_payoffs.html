@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+  <h2>Payoff items</h2>
+  <p>History of all your payoffs
+  {% if payoffs %}
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Debtor</th>
+            <th>Buyer</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for payoff in payoffs %}
+                <tr>
+                    <td>{{ payoff.debtor }}</td>
+                    <td>{{ payoff.buyer }}</td>
+                    <td>{{ payoff.price }}</td>
+                    <td>{{ payoff.description }}</td>
+                    <td>{{ payoff.date }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+  {% endif %}
+</div>
+{% endblock %}

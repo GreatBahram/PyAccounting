@@ -4,7 +4,7 @@ from flask_login import login_required, current_user
 from sqlalchemy import and_
 
 # local imports
-from pyaccounting.user.forms import AddPurchaseForm
+from pyaccounting.user.forms import AddPurchaseForm, AddPaybackForm
 from . import user
 from pyaccounting import db
 from pyaccounting.models import PaymentModel, PersonModel
@@ -36,12 +36,40 @@ def add_purchase():
     return render_template('user/add_purchase.html', title="Add Purchase",
             form=form)
 
+@user.route('/add_payoff', methods=["GET", "POST"])
+@login_required
+def add_payoff():
+    """
+    Handle requrests for the /add_off route
+    add an new purchase to the database through add purchase form
+    """
+    form = AddPaybackForm()
+    if form.validate_on_submit():
+        buyer = form.buyer.data.id
+        debtor = form.debtor.data.id
+        price = form.price.data
+        description = form.description.data
+        date = form.date.data
+        payment =  PaymentModel(buyer=buyer, debtor=debtor, price=price, description=description, date=date,
+                            is_payoff=True)
+        try:
+            payment.save_to_db()
+            flash('The payoff has been added!', 'success')
+        except:
+            flash('An error occurred saving the payoff to the database', 'danger')
+            return redirect(url_for('user.add_payoff'))
+        return redirect(url_for('user.list_payoffs'))
+    return render_template('user/add_payoff.html', title="Add Payoff", form=form)
+
 @user.route('/shoplist')
+@login_required
 def list_purchases():
-    items = PaymentModel.query.filter_by(is_payoff=False).filter_by(buyer=current_user.id).all()
+    items = PaymentModel.list_all_purchases(current_user.id)
     print(items)
 
 @user.route('/payofflist')
+@login_required
 def list_payoffs():
-    items = PaymentModel.query.filter_by(is_payoff=True).filter_by(debtor=current_user.id).all()
+    items = PaymentModel.list_all_payoffs(current_user.id)
     print(items)
+    return render_template('user/list_payoffs.html', title="Payoffs", payoffs=items)

@@ -24,8 +24,9 @@ def add_purchase():
         price = form.price.data
         description = form.description.data
         date = form.date.data
+        split_price = price // len(debtors)
         for deb in debtors:
-            payment =  PaymentModel(buyer=buyer, debtor=deb, price=price, description=description, date=date)
+            payment =  PaymentModel(buyer=buyer, debtor=deb, price=split_price, description=description, date=date)
             db.session.add(payment)
         db.session.commit()
         flash('Your new expenditure has been added!', 'success')

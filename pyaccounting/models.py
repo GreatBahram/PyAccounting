@@ -74,7 +74,7 @@ class PaymentModel(db.Model):
     debtor = db.Column(db.Integer, db.ForeignKey('persons.id'))
     price = db.Column(db.Integer, nullable=False)
     description = db.Column(db.String(200))
-    is_sale = db.Column(db.Boolean, default=False)
+    is_payoff = db.Column(db.Boolean, default=False)
     date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
     date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
             onupdate=db.func.current_timestamp())
@@ -91,5 +91,6 @@ class PaymentModel(db.Model):
                 }
 
     def __repr__(self):
-        return f"<Payment:>"
-
+        if self.is_payoff:
+            return f"<Payment: {self.debtor} +=> {self.buyer} ${self.price}"
+        return f"<Payment: {self.debtor} -=> {self.buyer} ${self.price} "

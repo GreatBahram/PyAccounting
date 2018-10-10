@@ -50,15 +50,11 @@ logger.info('Creating all tables...')
 db.create_all()
 
 # Administrator User
-admin_forename = input("What's your first-name? ")
-admin_surname = input("What's your last-name? ")
 admin_username = input('Enter a username for administrator, please: ')
 admin_password = getpass.getpass(prompt='Enter a password for administrator, please: ')
 admin_email = input('Enter an email for administrator, please: ')
 
 admin = PersonModel(
-        forename=admin_forename.capitalize(),
-        surname=admin_surname.capitalize(),
         username=admin_username,
         email=admin_email,
         password=admin_password,

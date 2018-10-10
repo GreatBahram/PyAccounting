@@ -10,7 +10,7 @@ from flask_bootstrap import Bootstrap
 from flask_bcrypt import Bcrypt
 
 # local imports
-from config import app_config
+from pyaccounting.config import app_config
 
 # db variable initialization
 db = SQLAlchemy()

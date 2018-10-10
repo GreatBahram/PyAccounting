@@ -9,7 +9,8 @@ from wtforms.validators import DataRequired
 
 # local imports
 from pyaccounting import db
-from pyaccounting.models import PaymentModel, PersonModel
+from pyaccounting.models.payment import PaymentModel
+from pyaccounting.models.person import PersonModel
 
 from datetime import datetime
 class MultiCheckboxField(SelectMultipleField):

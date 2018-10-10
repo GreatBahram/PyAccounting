@@ -17,7 +17,7 @@ import getpass
 
 # local imports
 from pyaccounting import db, create_app
-from pyaccounting.models import Person
+from pyaccounting.models.person import PersonModel
 
 # instantiate and config the logger
 logger = logging.getLogger(__name__)
@@ -56,7 +56,7 @@ admin_username = input('Enter a username for administrator, please: ')
 admin_password = getpass.getpass(prompt='Enter a password for administrator, please: ')
 admin_email = input('Enter an email for administrator, please: ')
 
-admin = Person(
+admin = PersonModel(
         forename=admin_forename.capitalize(),
         surname=admin_surname.capitalize(),
         username=admin_username,

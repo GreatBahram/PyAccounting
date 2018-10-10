@@ -6,7 +6,7 @@ from flask import abort, flash, redirect, render_template, request, url_for
 from . import admin
 from pyaccounting import db
 from pyaccounting.admin.forms import PersonForm
-from pyaccounting.models import PersonModel
+from pyaccounting.models.person import PersonModel
 
 def check_admin():
     """

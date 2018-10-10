@@ -7,7 +7,8 @@ from sqlalchemy import and_
 from pyaccounting.user.forms import AddPurchaseForm, AddPaybackForm
 from . import user
 from pyaccounting import db
-from pyaccounting.models import PaymentModel, PersonModel
+from pyaccounting.models.person import PersonModel
+from pyaccounting.models.payment import PaymentModel
 
 @user.route('/add_purchase', methods=["GET", "POST"])
 @login_required

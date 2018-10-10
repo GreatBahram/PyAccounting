@@ -7,7 +7,7 @@ from wtforms import (BooleanField, PasswordField, StringField, SubmitField,
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 # local imports
-from ..models import PersonModel
+from ..models.person import PersonModel
 
 
 class RegisterationForm(FlaskForm):

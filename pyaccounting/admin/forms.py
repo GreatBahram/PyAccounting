@@ -4,7 +4,7 @@ from wtforms import PasswordField, StringField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, ValidationError
 
 # local imports
-from pyaccounting.models import PersonModel
+from pyaccounting.models.person import PersonModel
 
 class PersonForm(FlaskForm):
     """

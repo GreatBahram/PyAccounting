@@ -6,7 +6,7 @@ from flask_login import login_required, login_user, logout_user, current_user
 from .forms import LoginForm, RegisterationForm, UpdateAccountForm
 from . import auth
 from .. import db
-from pyaccounting.models import PersonModel
+from pyaccounting.models.person import PersonModel
 from pyaccounting.auth.utils import save_picture
 
 
